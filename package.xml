@@ -9,9 +9,9 @@
 
 	<buildtool_depend>catkin</buildtool_depend>
 
+	<depend>charuco_detector</depend> <!-- https://github.com/carlosmccosta/charuco_detector -->
 	<depend>depth_image_proc</depend>
-	<depend>charuco_detector</depend>
-	<depend>dynamic_robot_localization</depend>
+	<depend>dynamic_robot_localization</depend> <!-- https://github.com/carlosmccosta/dynamic_robot_localization -->
 	<depend>nodelet</depend>
 	<depend>realsense2_camera</depend>
 	<depend>rgbd_launch</depend>
