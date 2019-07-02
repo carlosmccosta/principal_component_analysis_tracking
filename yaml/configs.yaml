@@ -11,7 +11,7 @@ message_management:
     max_seconds_ambient_pointcloud_age: 30.0
     use_odom_when_transforming_cloud_to_map_frame: false
     invert_cloud_to_map_transform: false
-    invert_registration_transformation: false
+    invert_registration_transformation: true
     invert_initial_poses_from_msgs: false
     initial_pose_msg_needs_to_be_in_map_frame: false
     minimum_number_of_points_in_ambient_pointcloud: 300
