@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+	<!-- control of nodes startup -->
+	<arg name="load_drl_node" default="true" />
+	<arg name="enable_respawn" default="true" />
+
+	<!-- namespace for parameters -->
+	<arg name="namespace" default="pca_tracking" />
+
+	<!-- topics -->
+	<arg name="pose_stamped_publish_topic" default="localization_pose" />
+	<arg name="ambient_pointcloud_topic" default="/camera/depth/color/points" />
+	<arg name="spin_rate" default="-1.0" /> <!-- < 0 -> at the rate of the sensor data -->
+	<!-- frame ids -->
+	<arg name="sensor_frame_id" default="camera_link" />
+	<arg name="map_frame_id" default="object" />
+	<arg name="base_link_frame_id" default="$(arg sensor_frame_id)" />
+	<arg name="odom_frame_id" default="$(arg base_link_frame_id)" />
+
+	<!-- configuration files (empty paths can be given for avoiding the rosparam load) -->
+	<arg name="yaml_configuration_configs_filename" default="$(find principal_component_analysis_tracking)/yaml/configs.yaml" />
+	<arg name="yaml_configuration_filters_filename" default="$(find principal_component_analysis_tracking)/yaml/filters.yaml" />
+	<arg name="yaml_configuration_filters_roi_filename" default="$(find principal_component_analysis_tracking)/yaml/filters_roi.yaml" />
+	<!-- <arg name="yaml_configuration_normal_estimators_filename" default="$(find principal_component_analysis_tracking)/yaml/normal_estimators.yaml" /> -->
+	<arg name="yaml_configuration_normal_estimators_filename" default="" />
+	<arg name="yaml_configuration_initial_pose_estimators_matchers_pca_filename" default="$(find principal_component_analysis_tracking)/yaml/initial_pose_estimators_matchers_pca.yaml" />
+	<arg name="yaml_configuration_custom_filename" default="" /> <!-- extra custom configurations loaded last -->
+
+	<group ns="$(arg namespace)/drl" clear_params="true">
+		<param name="frame_ids/map_frame_id" type="str" value="$(arg map_frame_id)" />
+		<param name="frame_ids/map_frame_id_for_transforming_pointclouds" type="str" value="$(arg sensor_frame_id)" />
+		<param name="frame_ids/map_frame_id_for_publishing_pointclouds" type="str" value="$(arg sensor_frame_id)" />
+		<param name="frame_ids/odom_frame_id" type="str" value="$(arg odom_frame_id)" />
+		<param name="frame_ids/base_link_frame_id" type="str" value="$(arg base_link_frame_id)" />
+		<param name="frame_ids/sensor_frame_id" type="str" value="$(arg sensor_frame_id)" />
+		<param name="initial_pose/robot_initial_pose_available" type="bool" value="false" />
+		<param name="subscribe_topic_names/pose_topic" type="str" value="" />
+		<param name="subscribe_topic_names/pose_stamped_topic" type="str" value="" />
+		<param name="subscribe_topic_names/pose_with_covariance_stamped_topic" type="str" value="" />
+		<param name="subscribe_topic_names/ambient_pointcloud_topic" type="str" value="$(arg ambient_pointcloud_topic)" />
+		<param name="subscribe_topic_names/reference_costmap_topic" type="str" value="" />
+		<param name="subscribe_topic_names/reference_pointcloud_topic" type="str" value="" />
+		<param name="publish_topic_names/pose_with_covariance_stamped_publish_topic" type="str" value="" />
+		<param name="publish_topic_names/pose_stamped_publish_topic" type="str" value="$(arg pose_stamped_publish_topic)" />
+		<param name="reference_pointclouds/reference_pointcloud_type" type="str" value="3D" />
+		<param name="reference_pointclouds/reference_pointcloud_available" type="bool" value="false" />
+		<param name="reference_pointclouds/reference_pointcloud_required" type="bool" value="false" />
+
+		<rosparam command="load" file="$(arg yaml_configuration_configs_filename)" subst_value="true" if="$(eval bool(yaml_configuration_configs_filename))" />
+		<rosparam command="load" file="$(arg yaml_configuration_filters_filename)" subst_value="true" if="$(eval bool(yaml_configuration_filters_filename))" />
+		<rosparam command="load" file="$(arg yaml_configuration_filters_roi_filename)" subst_value="false" if="$(eval bool(yaml_configuration_filters_roi_filename))" />
+		<rosparam command="load" file="$(arg yaml_configuration_normal_estimators_filename)" subst_value="true" if="$(eval bool(yaml_configuration_normal_estimators_filename))" />
+		<rosparam command="load" file="$(arg yaml_configuration_initial_pose_estimators_matchers_pca_filename)" subst_value="true" if="$(eval bool(yaml_configuration_initial_pose_estimators_matchers_pca_filename))" />
+		<rosparam command="load" file="$(arg yaml_configuration_custom_filename)" subst_value="true" if="$(eval bool(yaml_configuration_custom_filename))" />
+	</group>
+	<node if="$(arg load_drl_node)" name="drl" ns="$(arg namespace)" pkg="dynamic_robot_localization" type="drl_localization_node" respawn="$(arg enable_respawn)" output="screen" />
+
+	<group ns="$(arg namespace)/drl/pose_to_tf_publisher" clear_params="true">
+		<param name="publish_rate" type="double" value="$(arg spin_rate)" />
+		<param name="update_transform_timestamp_when_republishing_tf" type="bool" value="false" />
+		<param name="tf_lookup_timeout" type="double" value="1.5" />
+		<param name="publish_last_pose_tf_timeout_seconds" type="double" value="-1.0" />
+		<param name="pose_with_covariance_stamped_topic" type="str" value="" />
+		<param name="pose_stamped_topic" type="str" value="" />
+		<param name="odometry_topic" type="str" value="" />
+		<param name="map_frame_id" type="str" value="$(arg map_frame_id)" />
+		<param name="odom_frame_id" type="str" value="" />
+		<param name="base_link_frame_id" type="str" value="$(arg base_link_frame_id)" />
+		<param name="publish_initial_pose" type="bool" value="true" />
+		<param name="invert_tf_transform" type="bool" value="true" />
+		<param name="invert_tf_hierarchy" type="bool" value="true" />
+		<param name="transform_pose_to_map_frame_id" type="bool" value="false" />
+	</group>
+
+</launch>

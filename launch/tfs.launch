@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+	<node pkg="tf" type="static_transform_publisher" name="tf_charuco" args="-0.179931668852 -0.121961974904 0.621433709804 0.689566458301 0.675347623504 -0.169130110756 0.199496096826 camera_color_optical_frame charuco 100" />
+	<node pkg="tf" type="static_transform_publisher" name="tf_conveyor" args="0.155 0.198 0 3.14159265359 0 0 charuco conveyor 100" />
+</launch>

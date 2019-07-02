@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+	<include file="$(find charuco_detector)/launch/charuco_detector.launch" >
+		<arg name="squares_sides_size_in_meters" default="0.028107143" />
+		<arg name="markers_sides_size_in_meters" default="0.016864286" />
+		<arg name="image_topic" default="/camera/color/image_raw" />
+		<arg name="camera_info_topic" default="/camera/color/camera_info" />
+	</include>
+
+</launch>

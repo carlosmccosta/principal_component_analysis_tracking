@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find principal_component_analysis_tracking)/rviz/rviz.rviz" respawn="false" clear_params="true" output="screen" />
+</launch>
