@@ -2,11 +2,11 @@ filters:
     ambient_pointcloud_custom_frame:
         custom_frame_id: 'conveyor'
         0_crop_box:
-            box_min_x: -0.22
-            box_min_y: -0.22
-            box_min_z: 0.0
-            box_max_x: 0.22
-            box_max_y: 0.22
+            box_min_x: -0.23
+            box_min_y: -0.23
+            box_min_z: 0.01
+            box_max_x: 0.23
+            box_max_y: 0.23
             box_max_z: 0.20
             invert_selection: false
             filtered_cloud_publish_topic: 'filtered_pointcloud_cropbox_conveyor'
