@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <arg name="camera" default="camera"/>
+
+  <node name="$(anon dynparam_stereo)" pkg="dynamic_reconfigure" type="dynparam" args="set_from_parameters $(arg camera)/stereo_module">
+    <param name="visual_preset" type="int" value="4"/>
+    <param name="laser_power" type="double" value="360"/>
+  </node>
+
+  <node name="$(anon dynparam_pointcloud)" pkg="dynamic_reconfigure" type="dynparam" args="set_from_parameters $(arg camera)/pointcloud">
+    <param name="stream_filter" type="int" value="3"/>
+  </node>
+
+</launch>
