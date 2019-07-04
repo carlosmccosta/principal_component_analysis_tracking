@@ -6,8 +6,10 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /Sensor data1
         - /TF1/Frames1
         - /PCA tracking1
+        - /PCA tracking1/random_sample_pca1
       Splitter Ratio: 0.6592592597007751
     Tree Height: 1205
   - Class: rviz/Selection
@@ -64,26 +66,26 @@ Visualization Manager:
       Channel Name: intensity
       Class: rviz/PointCloud2
       Color: 255; 255; 255
-      Color Transformer: RGB8
+      Color Transformer: Intensity
       Decay Time: 0
-      Enabled: false
+      Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 4096
+      Max Intensity: 255
       Min Color: 0; 0; 0
-      Min Intensity: 0
+      Min Intensity: 17
       Name: Sensor data
       Position Transformer: XYZ
       Queue Size: 1
       Selectable: true
-      Size (Pixels): 3
+      Size (Pixels): 1
       Size (m): 0.009999999776482582
       Style: Points
       Topic: /camera/depth/color/points
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
-      Value: false
+      Value: true
     - Class: rviz/Image
       Enabled: true
       Image Topic: /camera/color/image_raw
@@ -290,8 +292,8 @@ Visualization Manager:
           Axis: Z
           Channel Name: intensity
           Class: rviz/PointCloud2
-          Color: 255; 255; 255
-          Color Transformer: RGB8
+          Color: 115; 210; 22
+          Color Transformer: FlatColor
           Decay Time: 0
           Enabled: true
           Invert Rainbow: false
@@ -303,7 +305,7 @@ Visualization Manager:
           Position Transformer: XYZ
           Queue Size: 10
           Selectable: true
-          Size (Pixels): 3
+          Size (Pixels): 5
           Size (m): 0.009999999776482582
           Style: Points
           Topic: /pca_tracking/filtered_pointcloud_random_sample_pca
@@ -341,25 +343,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.3081140518188477
+      Distance: 1.8754620552062988
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.051053568720817566
-        Y: 0.025049857795238495
-        Z: 0.1380128264427185
+        X: 0.11896756291389465
+        Y: 0.00942268967628479
+        Z: 0.0800461396574974
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.2347968816757202
+      Pitch: 1.2347958087921143
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.005401134490966797
+      Yaw: 0.005399991758167744
     Saved: ~
 Window Geometry:
   Displays:
