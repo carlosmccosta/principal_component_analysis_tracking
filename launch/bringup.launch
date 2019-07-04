@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <include file="$(find principal_component_analysis_tracking)/launch/intel_realsense.launch" />
+  <include file="$(find principal_component_analysis_tracking)/launch/intel_realsense_dynamic_reconfigure.launch" />
+  <include file="$(find principal_component_analysis_tracking)/launch/tfs.launch" />
+  <include file="$(find principal_component_analysis_tracking)/launch/principal_component_analysis_tracking.launch" />
+
+</launch>
