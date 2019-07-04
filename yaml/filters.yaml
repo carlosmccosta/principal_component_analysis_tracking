@@ -2,12 +2,12 @@ filters:
     publish_pointclouds_only_if_there_is_subscribers: false
     ambient_pointcloud_feature_registration:
         0_crop_box:
-            box_min_x: -0.3
-            box_min_y: -0.3
+            box_min_x: -1
+            box_min_y: -1
             box_min_z: 0.2
-            box_max_x: 0.3
-            box_max_y: 0.3
-            box_max_z: 0.8
+            box_max_x: 1
+            box_max_y: 1
+            box_max_z: 1
             invert_selection: false
             filtered_cloud_publish_topic: 'filtered_pointcloud_cropbox'
         # 1_voxel_grid:
