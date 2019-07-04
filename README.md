@@ -1,7 +1,12 @@
 # principal_component_analysis_tracking
 
 Configuration for the [drl](https://github.com/carlosmccosta/dynamic_robot_localization) perception pipeline for performing 6 DoF tracking of an object within a [Region of Interest (ROI)](yaml/filters_roi.yaml) using Principal Component Analysis (PCA).
+
+This package was tested for tracking the top section of a box moving on top of a conveyor, as seen in the figure below.
+
 Check the documentation of the [dynamic_robot_localization](https://github.com/carlosmccosta/dynamic_robot_localization) package for customizing the perception pipeline for your specific use case.
+
+![RViz overview of the PCA tracking of the top section of a box on top of a conveyor](docs/box_on_conveyor.jpg "RViz overview of the PCA tracking of the top section of a box on top of a conveyor")
 
 
 ## Usage
